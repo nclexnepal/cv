@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8-Step Form with Stepper</title>
+    <title>NCLEX NEPAL || CV</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .step-content {
@@ -26,7 +26,7 @@
 <body>
 
     <div class="container mt-5">
-        <h2>Multi-Step Form with Stepper</h2>
+        <h2>GENERATE YOUR CV </h2>
 
         <!-- Stepper Navigation -->
         <div class="row text-center mb-3">
@@ -44,6 +44,13 @@
         <!-- Step 1: Personal Details -->
         <div id="step-content-1" class="step-content active">
             <h3>Get Started</h3>
+            <!-- Hero Section -->
+            <section class="hero bg-primary text-white text-center py-5">
+                <div class="container">
+                    <h1 class="display-4 mb-4">Generate Your Professional CV</h1>
+                    <p class="lead mb-4">Create a stunning CV in minutes with our easy-to-use generator tool.</p>
+                </div>
+            </section>
         </div>
         <!-- Step 1: Personal Details -->
         <div id="step-content-2" class="step-content">
@@ -104,9 +111,12 @@
             <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
             <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
         </div>
+
+
         <div class="mt-4">
             <button type="button" class="btn btn-success" onclick="generatePDF()">Generate PDF</button>
         </div>
+
     </div>
 
     <script>
@@ -434,35 +444,35 @@
             // Loop through all reference entries and add them to the PDF
             const referenceEntries = document.getElementsByClassName('reference-entry');
 
-            if(referenceEntries.length > 0){
+            if (referenceEntries.length > 0) {
                 doc.text('References:', 10, yPosition);
                 yPosition += 10;
 
                 for (let i = 0; i < referenceEntries.length; i++) {
-                const referenceName = document.getElementById(`referenceName${i + 1}`).value;
-                const position = document.getElementById(`position${i + 1}`).value;
-                const organization = document.getElementById(`organization${i + 1}`).value;
-                const contactInfo = document.getElementById(`contactInfo${i + 1}`).value;
+                    const referenceName = document.getElementById(`referenceName${i + 1}`).value;
+                    const position = document.getElementById(`position${i + 1}`).value;
+                    const organization = document.getElementById(`organization${i + 1}`).value;
+                    const contactInfo = document.getElementById(`contactInfo${i + 1}`).value;
 
-                // Add Reference details to PDF
-                doc.text(`${i + 1}. ${referenceName}`, 10, yPosition);
-                yPosition += 6;
-                doc.text(`   Position: ${position}`, 10, yPosition);
-                yPosition += 6;
-                doc.text(`   Organization: ${organization}`, 10, yPosition);
-                yPosition += 6;
-                doc.text(`   Contact Information: ${contactInfo}`, 10, yPosition);
-                yPosition += 10;  // Add some space after each reference
+                    // Add Reference details to PDF
+                    doc.text(`${i + 1}. ${referenceName}`, 10, yPosition);
+                    yPosition += 6;
+                    doc.text(`   Position: ${position}`, 10, yPosition);
+                    yPosition += 6;
+                    doc.text(`   Organization: ${organization}`, 10, yPosition);
+                    yPosition += 6;
+                    doc.text(`   Contact Information: ${contactInfo}`, 10, yPosition);
+                    yPosition += 10;  // Add some space after each reference
 
-                // Check for page overflow and add a new page if necessary
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 10;
+                    // Check for page overflow and add a new page if necessary
+                    if (yPosition > 270) {
+                        doc.addPage();
+                        yPosition = 10;
+                    }
                 }
-            }
 
             }
-           
+
             // Save the PDF
             doc.save('newcv.pdf');
         }
