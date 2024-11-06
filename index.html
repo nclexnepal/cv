@@ -87,11 +87,13 @@
         .stepper-step.completed:not(:last-child):after {
             background-color: #28a745;
         }
-         /* Center the buttons at the bottom of the page */
-         .buttons-container {
+
+        /* Center the buttons at the bottom of the page */
+        .buttons-container {
             position: relative;
             left: 50%;
-            bottom: 30px; /* Adjust distance from bottom */
+            bottom: 30px;
+            /* Adjust distance from bottom */
             transform: translateX(-50%);
             display: flex;
             justify-content: center;
@@ -100,9 +102,9 @@
         }
 
         .buttons-container button {
-            width: 150px; /* Make buttons the same width */
+            width: 150px;
+            /* Make buttons the same width */
         }
-
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -116,15 +118,15 @@
 
         <!-- Stepper Navigation -->
         <div class="row text-center mb-3 mt-4">
-            <div class="col stepper-step step-1">Get Started</div>
-            <div class="col stepper-step step-2">Personal Details</div>
-            <div class="col stepper-step step-3">Objectives</div>
-            <div class="col stepper-step step-4">Experience</div>
-            <div class="col stepper-step step-5">Education</div>
-            <div class="col stepper-step step-6">Training & Certificate</div>
-            <div class="col stepper-step step-7">Language</div>
-            <div class="col stepper-step step-8">Specializations and Skills</div>
-            <div class="col stepper-step step-9">References</div>
+            <div class="col stepper-step step-1" onclick="showStep(1)">Get Started</div>
+            <div class="col stepper-step step-2" onclick="showStep(2)">Personal Details</div>
+            <div class="col stepper-step step-3" onclick="showStep(3)">Objectives</div>
+            <div class="col stepper-step step-4" onclick="showStep(4)">Experience</div>
+            <div class="col stepper-step step-5" onclick="showStep(5)">Education</div>
+            <div class="col stepper-step step-6" onclick="showStep(6)">Training & Certificate</div>
+            <div class="col stepper-step step-7" onclick="showStep(7)">Language</div>
+            <div class="col stepper-step step-8" onclick="showStep(8)">Specializations and Skills</div>
+            <div class="col stepper-step step-9" onclick="showStep(9)">References</div>
         </div>
 
         <!-- Step 1: Personal Details -->
@@ -234,7 +236,7 @@
                 showStep(currentStep);
             }
         }
-        
+
     </script>
     <script>
 
