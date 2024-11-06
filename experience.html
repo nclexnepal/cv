@@ -1,0 +1,145 @@
+<div class="container mt-5">
+    <h2>Work Experience</h2>
+
+    <!-- Container for job entries -->
+    <div id="job-entries-container">
+        <div class="job-entry" id="job-entry-1">
+            <h3>1. Job Information</h3>
+            <label for="jobTitle1">Job Title:</label>
+            <input type="text" class="form-control" id="jobTitle1" name="jobTitle1" required><br>
+
+            <label for="unit1">Unit:</label>
+            <input type="text" class="form-control" id="unit1" name="unit1" required><br>
+
+            <label for="from1">From:</label>
+            <input type="date" class="form-control" id="from1" name="from1" required><br>
+
+            <label for="to1">To:</label>
+            <input type="date" class="form-control" id="to1" name="to1" required><br>
+
+            <label for="dutyHours1">Duty Hours (per week):</label>
+            <input type="number" class="form-control" id="dutyHours1" name="dutyHours1" required><br>
+
+            <label for="hospitalName1">Hospital Name:</label>
+            <input type="text" class="form-control" id="hospitalName1" name="hospitalName1" required><br>
+
+            <label for="hospitalAddress1">Hospital’s Address:</label>
+            <input type="text" class="form-control" id="hospitalAddress1" name="hospitalAddress1"
+                required><br>
+
+            <!-- Duties and Responsibilities Section -->
+            <label for="duties1">Duties and Responsibilities:</label>
+            <div id="duties-list-1">
+                <div class="input-group mb-2">
+                    <textarea class="form-control" id="duties1" name="duties1[]" rows="2"
+                        required></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="add-duty-btn-1">Add More Duty</button><br>
+
+            <!-- Equipment Used Section -->
+            <label for="equipment1">Equipment Used:</label>
+            <div id="equipment-list-1">
+                <div class="input-group mb-2">
+                    <textarea class="form-control" id="equipment1" name="equipment1[]" rows="2"
+                        required></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="add-equipment-btn-1">Add More
+                Equipment</button><br>
+        </div>
+    </div>
+
+    <!-- Add Experience Button -->
+    <button type="button" class="btn btn-secondary" id="add-experience-btn">Add Another Experience</button>
+
+    <!-- Submit Button -->
+</div>
+
+<script>
+    let jobCount = 1; // Initial job count is 1
+
+    // Function to add a new job entry
+    function addJobEntry() {
+        jobCount++;
+
+        // Create a new div for the new job entry
+        const newJobEntry = document.createElement('div');
+        newJobEntry.classList.add('job-entry', 'mt-4');
+        newJobEntry.id = `job-entry-${jobCount}`;
+
+        // HTML for the new job entry form
+        newJobEntry.innerHTML = `
+    <h3>${jobCount}. Job Information</h3>
+    <label for="jobTitle${jobCount}">Job Title:</label>
+    <input type="text" class="form-control" id="jobTitle${jobCount}" name="jobTitle${jobCount}" required><br>
+
+    <label for="unit${jobCount}">Unit:</label>
+    <input type="text" class="form-control" id="unit${jobCount}" name="unit${jobCount}" required><br>
+
+    <label for="from${jobCount}">From:</label>
+    <input type="date" class="form-control" id="from${jobCount}" name="from${jobCount}" required><br>
+
+    <label for="to${jobCount}">To:</label>
+    <input type="date" class="form-control" id="to${jobCount}" name="to${jobCount}" required><br>
+
+    <label for="dutyHours${jobCount}">Duty Hours (per week):</label>
+    <input type="number" class="form-control" id="dutyHours${jobCount}" name="dutyHours${jobCount}" required><br>
+
+    <label for="hospitalName${jobCount}">Hospital Name:</label>
+    <input type="text" class="form-control" id="hospitalName${jobCount}" name="hospitalName${jobCount}" required><br>
+
+    <label for="hospitalAddress${jobCount}">Hospital’s Address:</label>
+    <input type="text" class="form-control" id="hospitalAddress${jobCount}" name="hospitalAddress${jobCount}" required><br>
+
+    <!-- Duties and Responsibilities Section -->
+    <label for="duties${jobCount}">Duties and Responsibilities:</label>
+    <div id="duties-list-${jobCount}">
+      <div class="input-group mb-2">
+        <textarea class="form-control" id="duties${jobCount}" name="duties${jobCount}[]" rows="2" required></textarea>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" id="add-duty-btn-${jobCount}">Add More Duty</button><br>
+
+    <!-- Equipment Used Section -->
+    <label for="equipment${jobCount}">Equipment Used:</label>
+    <div id="equipment-list-${jobCount}">
+      <div class="input-group mb-2">
+        <textarea class="form-control" id="equipment${jobCount}" name="equipment${jobCount}[]" rows="2" required></textarea>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" id="add-equipment-btn-${jobCount}">Add More Equipment</button><br>
+  `;
+
+        // Append the new job entry to the container
+        document.getElementById('job-entries-container').appendChild(newJobEntry);
+
+        // Add event listeners to the new buttons
+        document.getElementById(`add-duty-btn-${jobCount}`).addEventListener('click', function () {
+            addNewItem(`duties-list-${jobCount}`, `duties${jobCount}`);
+        });
+        document.getElementById(`add-equipment-btn-${jobCount}`).addEventListener('click', function () {
+            addNewItem(`equipment-list-${jobCount}`, `equipment${jobCount}`);
+        });
+    }
+
+    // Function to add new duty or equipment item dynamically
+    function addNewItem(listId, namePrefix) {
+        const list = document.getElementById(listId);
+        const newItem = document.createElement('div');
+        newItem.classList.add('input-group', 'mb-2');
+        newItem.innerHTML = `<textarea class="form-control" name="${namePrefix}[]" rows="2" required></textarea>`;
+        list.appendChild(newItem);
+    }
+
+    // Add event listener to the "Add Experience" button
+    document.getElementById('add-experience-btn').addEventListener('click', addJobEntry);
+
+    // Initialize the first job entry's dynamic buttons
+    document.getElementById('add-duty-btn-1').addEventListener('click', function () {
+        addNewItem('duties-list-1', 'duties1');
+    });
+    document.getElementById('add-equipment-btn-1').addEventListener('click', function () {
+        addNewItem('equipment-list-1', 'equipment1');
+    });
+</script>

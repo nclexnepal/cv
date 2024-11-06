@@ -1,0 +1,78 @@
+
+
+<div class="container mt-5">
+    <h2>References</h2>
+
+    <!-- Container for reference entries -->
+    <div id="reference-entries-container">
+        <!-- Initial Reference Entry -->
+        <div class="reference-entry border p-3 rounded mb-4" id="reference-entry-1">
+            <h5>Reference 1</h5>
+            <div class="mb-3">
+                <label for="referenceName1" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="referenceName1" name="referenceName1"
+                    value="Sita Joshi" required>
+            </div>
+            <div class="mb-3">
+                <label for="position1" class="form-label">Position:</label>
+                <input type="text" class="form-control" id="position1" name="position1"
+                    value="Nursing Officer, PICU" required>
+            </div>
+            <div class="mb-3">
+                <label for="organization1" class="form-label">Organization:</label>
+                <input type="text" class="form-control" id="organization1" name="organization1"
+                    value="Kanti Children Hospital" required>
+            </div>
+            <div class="mb-3">
+                <label for="contactInfo1" class="form-label">Contact Information:</label>
+                <input type="text" class="form-control" id="contactInfo1" name="contactInfo1"
+                    value="9841779151" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Reference Button -->
+    <button type="button" class="btn btn-success mt-3" id="add-reference-btn">Add Another Reference</button>
+
+</div>
+
+<script>
+    let referenceCount = 1; // Initial reference count
+
+    // Function to add a new reference entry
+    function addReferenceEntry() {
+        referenceCount++;
+
+        // Create a new div for the new reference entry
+        const newReferenceEntry = document.createElement('div');
+        newReferenceEntry.classList.add('reference-entry', 'border', 'p-3', 'rounded', 'mt-4');
+        newReferenceEntry.id = `reference-entry-${referenceCount}`;
+
+        // HTML for the new reference entry form
+        newReferenceEntry.innerHTML = `
+<h5>Reference ${referenceCount}</h5>
+<div class="mb-3">
+<label for="referenceName${referenceCount}" class="form-label">Name:</label>
+<input type="text" class="form-control" id="referenceName${referenceCount}" name="referenceName${referenceCount}" required>
+</div>
+<div class="mb-3">
+<label for="position${referenceCount}" class="form-label">Position:</label>
+<input type="text" class="form-control" id="position${referenceCount}" name="position${referenceCount}" required>
+</div>
+<div class="mb-3">
+<label for="organization${referenceCount}" class="form-label">Organization:</label>
+<input type="text" class="form-control" id="organization${referenceCount}" name="organization${referenceCount}" required>
+</div>
+<div class="mb-3">
+<label for="contactInfo${referenceCount}" class="form-label">Contact Information:</label>
+<input type="text" class="form-control" id="contactInfo${referenceCount}" name="contactInfo${referenceCount}" required>
+</div>
+`;
+
+        // Append the new reference entry to the container
+        document.getElementById('reference-entries-container').appendChild(newReferenceEntry);
+    }
+
+    // Add event listener to the "Add Another Reference" button
+    document.getElementById('add-reference-btn').addEventListener('click', addReferenceEntry);
+</script>

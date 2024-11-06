@@ -1,0 +1,49 @@
+
+<div class="container mt-5">
+    <h2>Personal Information</h2>
+
+    <!-- Languages Section -->
+    <h3 class="mt-5">Languages</h3>
+    <div id="languages-entries-container">
+        <!-- Initial Language Entry -->
+        <div class="language-entry" id="language-entry-1">
+            <h5>1. Language</h5>
+            <div class="mb-3">
+                <label for="language1" class="form-label">Language:</label>
+                <input type="text" class="form-control" id="language1" name="language1" required><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Language Button -->
+    <button type="button" class="btn btn-success mt-3" id="add-language-btn">Add Another Language</button>
+
+</div>
+<script>
+    let languageCount = 1; // Initial language count is 1
+
+    // Function to add a new language entry
+    function addLanguageEntry() {
+        languageCount++;
+
+        // Create a new div for the new language entry
+        const newLanguageEntry = document.createElement('div');
+        newLanguageEntry.classList.add('language-entry', 'mt-4');
+        newLanguageEntry.id = `language-entry-${languageCount}`;
+
+        // HTML for the new language entry form
+        newLanguageEntry.innerHTML = `
+<h5>${languageCount}. Language</h5>
+<div class="mb-3">
+<label for="language${languageCount}" class="form-label">Language:</label>
+<input type="text" class="form-control" id="language${languageCount}" name="language${languageCount}" required><br>
+</div>
+`;
+
+        // Append the new language entry to the container
+        document.getElementById('languages-entries-container').appendChild(newLanguageEntry);
+    }
+
+    // Add event listener to the "Add Another Language" button
+    document.getElementById('add-language-btn').addEventListener('click', addLanguageEntry);
+</script>

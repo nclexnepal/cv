@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <h2>Work Experience, Education, and Training/Certificates</h2>
+    <h3 class="mt-5">Training/Certificates</h3>
+    <div id="training-entries-container">
+        <!-- First Training/Certificate Entry -->
+        <div class="training-entry" id="training-entry-1">
+            <h5>1. Training/Certificate Information</h5>
+
+            <div class="mb-3">
+                <label for="trainingName1" class="form-label">Training/Certificate Name:</label>
+                <input type="text" class="form-control" id="trainingName1" name="trainingName1"
+                    required><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="organization1" class="form-label">Issuing Organization:</label>
+                <input type="text" class="form-control" id="organization1" name="organization1"
+                    required><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="trainingDate1" class="form-label">Date:</label>
+                <input type="date" class="form-control" id="trainingDate1" name="trainingDate1"
+                    required><br>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add Training Button -->
+    <button type="button" class="btn btn-success mt-3" id="add-training-btn">Add Another Training</button>
+
+</div>
+
+<script>
+    let trainingCount = 1; // Initial training count is 1
+
+    // Function to add a new training entry
+    function addTrainingEntry() {
+        trainingCount++;
+
+        // Create a new div for the new training entry
+        const newTrainingEntry = document.createElement('div');
+        newTrainingEntry.classList.add('training-entry', 'mt-4');
+        newTrainingEntry.id = `training-entry-${trainingCount}`;
+
+        // HTML for the new training entry form
+        newTrainingEntry.innerHTML = `
+<h5>${trainingCount}. Training/Certificate Information</h5>
+
+<div class="mb-3">
+<label for="trainingName${trainingCount}" class="form-label">Training/Certificate Name:</label>
+<input type="text" class="form-control" id="trainingName${trainingCount}" name="trainingName${trainingCount}" required><br>
+</div>
+
+<div class="mb-3">
+<label for="organization${trainingCount}" class="form-label">Issuing Organization:</label>
+<input type="text" class="form-control" id="organization${trainingCount}" name="organization${trainingCount}" required><br>
+</div>
+
+<div class="mb-3">
+<label for="trainingDate${trainingCount}" class="form-label">Date:</label>
+<input type="date" class="form-control" id="trainingDate${trainingCount}" name="trainingDate${trainingCount}" required><br>
+</div>
+`;
+
+        // Append the new training entry to the container
+        document.getElementById('training-entries-container').appendChild(newTrainingEntry);
+    }
+
+    // Add event listener to the "Add Training" button
+    document.getElementById('add-training-btn').addEventListener('click', addTrainingEntry);
+</script>

@@ -1,0 +1,28 @@
+<!-- Objectives Section -->
+<div class="mb-3">
+    <label for="objectives" class="form-label">Objectives</label>
+    <div id="objectives-list">
+        <!-- Pre-filled Objectives -->
+        <div class="input-group mb-2">
+            <span class="input-group-text">•</span>
+            <textarea class="form-control" id="objective-1"
+                rows="2">To leverage my extensive experience in nursing across various units to contribute effectively to patient care.</textarea>
+        </div>
+
+    </div>
+
+    <button type="button" class="btn btn-secondary" id="add-objective-btn">Add More Objective</button>
+</div>
+<script>
+    // JavaScript to dynamically add more objective fields
+    document.getElementById('add-objective-btn').addEventListener('click', function () {
+        var objectivesList = document.getElementById('objectives-list');
+        var newObjective = document.createElement('div');
+        newObjective.classList.add('input-group', 'mb-2');
+        newObjective.innerHTML = `
+    <span class="input-group-text">•</span>
+    <textarea class="form-control" rows="2" placeholder="Enter another objective"></textarea>
+  `;
+        objectivesList.appendChild(newObjective);
+    });
+</script>

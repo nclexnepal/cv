@@ -1,0 +1,104 @@
+<div class="container mt-5">
+    <h2>Professional Details</h2>
+
+    <!-- Specializations Section -->
+    <h3 class="mt-5">Specializations</h3>
+    <div id="specializations-entries-container">
+        <!-- Initial Specialization Entry -->
+        <div class="specialization-entry" id="specialization-entry-1">
+            <div class="mb-3">
+                <label for="specialization1" class="form-label">Specialization:</label>
+                <input type="text" class="form-control" id="specialization1" name="specialization1"
+                    value="Masters in Child Health Nursing" required>
+            </div>
+
+            <!-- Skills for Specialization 1 -->
+            <h5>Skills</h5>
+            <div id="skills-entries-container-1" class="skills-entries-container">
+                <div class="skill-entry" id="skill-entry-1-1">
+                    <div class="mb-3">
+                        <label for="skill1-1" class="form-label">Skill:</label>
+                        <input type="text" class="form-control" id="skill1-1" name="skill1-1"
+                            value="Self-Motivation" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button to add more skills under this specialization -->
+            <button type="button" class="btn btn-secondary mt-2 add-skill-btn"
+                onclick="addSkillEntry(1)">Add Another Skill</button>
+        </div>
+    </div>
+
+    <!-- Button to add another specialization with its own skills -->
+    <button type="button" class="btn btn-success mt-3" id="add-specialization-btn">Add Another
+        Specialization</button>
+
+</div>
+
+
+<script>
+    let specializationCount = 1; // Initial specialization count
+    let skillCounts = { 1: 1 }; // Initial skill count for each specialization
+
+    // Function to add a new specialization entry with its own skill section
+    function addSpecializationEntry() {
+        specializationCount++;
+        skillCounts[specializationCount] = 1; // Initialize skill count for the new specialization
+
+        // Create a new div for the new specialization entry
+        const newSpecializationEntry = document.createElement('div');
+        newSpecializationEntry.classList.add('specialization-entry', 'mt-4', 'border', 'p-3', 'rounded');
+        newSpecializationEntry.id = `specialization-entry-${specializationCount}`;
+
+        // HTML for the new specialization entry form with its skills section
+        newSpecializationEntry.innerHTML = `
+<div class="mb-3">
+<label for="specialization${specializationCount}" class="form-label">Specialization:</label>
+<input type="text" class="form-control" id="specialization${specializationCount}" name="specialization${specializationCount}" required>
+</div>
+
+<!-- Skills for the new specialization -->
+<h5>Skills</h5>
+<div id="skills-entries-container-${specializationCount}" class="skills-entries-container">
+<div class="skill-entry" id="skill-entry-${specializationCount}-1">
+<div class="mb-3">
+<label for="skill${specializationCount}-1" class="form-label">Skill:</label>
+<input type="text" class="form-control" id="skill${specializationCount}-1" name="skill${specializationCount}-1" required>
+</div>
+</div>
+</div>
+
+<!-- Button to add more skills under this new specialization -->
+<button type="button" class="btn btn-secondary mt-2 add-skill-btn" onclick="addSkillEntry(${specializationCount})">Add Another Skill</button>
+`;
+
+        // Append the new specialization entry to the container
+        document.getElementById('specializations-entries-container').appendChild(newSpecializationEntry);
+    }
+
+    // Function to add a new skill entry under a specific specialization
+    function addSkillEntry(specializationId) {
+        skillCounts[specializationId]++; // Increment skill count for this specialization
+        const skillId = skillCounts[specializationId];
+
+        // Create a new div for the new skill entry
+        const newSkillEntry = document.createElement('div');
+        newSkillEntry.classList.add('skill-entry', 'mt-3');
+        newSkillEntry.id = `skill-entry-${specializationId}-${skillId}`;
+
+        // HTML for the new skill entry form
+        newSkillEntry.innerHTML = `
+<div class="mb-3">
+<label for="skill${specializationId}-${skillId}" class="form-label">Skill:</label>
+<input type="text" class="form-control" id="skill${specializationId}-${skillId}" name="skill${specializationId}-${skillId}" required>
+</div>
+`;
+
+        // Append the new skill entry to the skills container of the specified specialization
+        document.getElementById(`skills-entries-container-${specializationId}`).appendChild(newSkillEntry);
+    }
+
+    // Add event listener to the "Add Another Specialization" button
+    document.getElementById('add-specialization-btn').addEventListener('click', addSpecializationEntry);
+</script>
