@@ -1,16 +1,16 @@
 <!-- Objectives Section -->
-<div class="mb-3">
+<div class="mb-3 card p-4">
     <div id="objectives-list">
         <!-- Pre-filled Objectives -->
         <div class="input-group mb-2">
             <span class="input-group-text">•</span>
-            <textarea class="form-control" id="objective-1"
-                rows="2"></textarea>
+            <input type="text" class="form-control" id="objective-1">
         </div>
+        
 
     </div>
 
-    <button type="button" class="btn btn-secondary" id="add-objective-btn">Add More Objective</button>
+    <button type="button" class="btn btn-success mt-3" id="add-objective-btn"><i class="fa fa-plus"></i> Add Another Objective </button>
 </div>
 <script>
     // JavaScript to dynamically add more objective fields
@@ -20,7 +20,8 @@
         newObjective.classList.add('input-group', 'mb-2');
         newObjective.innerHTML = `
     <span class="input-group-text">•</span>
-    <textarea class="form-control" rows="2" placeholder="Enter another objective"></textarea>
+     <input type="text" class="form-control" id="objective-1"
+                >
   `;
         objectivesList.appendChild(newObjective);
     });
