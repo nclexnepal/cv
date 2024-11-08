@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Page PDF Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+  <div class="pdf">
+    <h1>Hello, World!</h1>
+    <p>This content will be converted into a PDF. Add more content here to test.</p>
+    </div>
+
+  <button onclick="downloadDivAsPDF()">Download as PDF</button>
+
+  <script>
+    function downloadDivAsPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const content = document.getElementsByClassName("pdf")[0];
+
+      html2canvas(content)
+        .then(canvas => {
+          const imgData = canvas.toDataURL("image/png");
+          const imgWidth = 190; // Adjust image width as needed
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+          let y = 10; // Initial position on the page
+
+          while (y < imgHeight) {
+            doc.addImage(imgData, "PNG", 10, y, imgWidth, imgHeight - y);
+            y += imgHeight;
+            if (y < imgHeight) {
+              doc.addPage();
+              y = 10;
+            }
+          }
+
+          doc.save("download.pdf");
+        })
+        .catch(error => {
+          console.error("Error capturing the content:", error);
+        });
+    }
+  </script>
+
+</body>
+</html>
